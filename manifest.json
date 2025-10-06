@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Mano - Assistente de Automação Sisreg",
+  "version": "1.0",
+  "description": "Assistente pessoal inteligente que automatiza o sistema Sisreg III",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tabs",
+    "clipboardRead",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://sisregiii.saude.gov.br/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://sisregiii.saude.gov.br/*"],
+      "js": ["content.js", "content-unified.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Mano - Assistente Sisreg"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["ocr.html", "ocr.js", "voice.js", "workflows.js", "visual-feedback.js", "document-scanner.js", "document-scanner.css", "sisreg-viewer.js", "unified-interface.html", "unified-interface.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

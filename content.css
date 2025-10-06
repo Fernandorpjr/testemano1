@@ -1,0 +1,265 @@
+/* Estilos modernos para o assistente Mano */
+
+:root {
+    --mano-primary: #4361ee;
+    --mano-secondary: #3f37c9;
+    --mano-accent: #4cc9f0;
+    --mano-success: #4caf50;
+    --mano-warning: #ff9800;
+    --mano-error: #f44336;
+    --mano-dark: #2b2d42;
+    --mano-light: #f8f9fa;
+    --mano-gray: #6c757d;
+    --mano-border-radius: 8px;
+    --mano-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    --mano-transition: all 0.3s ease;
+}
+
+/* Interface principal */
+#mano-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100vh;
+    background-color: var(--mano-light);
+    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#mano-sidebar.collapsed {
+    transform: translateX(350px);
+}
+
+/* Cabeçalho da barra lateral */
+#mano-sidebar-header {
+    background-color: var(--mano-primary);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#mano-sidebar-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Botão de toggle */
+#mano-toggle-button {
+    position: fixed;
+    top: 20px;
+    right: 360px;
+    width: 56px;
+    height: 56px;
+    background-color: var(--mano-primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9998;
+    box-shadow: var(--mano-box-shadow);
+    transition: right 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+
+#mano-toggle-button:hover {
+    transform: scale(1.05);
+    background-color: var(--mano-secondary);
+}
+
+#mano-toggle-button.collapsed {
+    right: 20px;
+}
+
+#mano-command-input {
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: var(--mano-border-radius);
+    margin: 10px;
+    font-size: 15px;
+    transition: var(--mano-transition);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+#mano-command-input:focus {
+    border-color: var(--mano-primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    outline: none;
+}
+
+#mano-command-button {
+    background-color: var(--mano-primary);
+    color: white;
+    border: none;
+    border-radius: var(--mano-border-radius);
+    padding: 12px 15px;
+    margin: 0 10px 10px 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--mano-transition);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#mano-command-button:hover {
+    background-color: var(--mano-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#mano-log-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.mano-log-entry {
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: var(--mano-border-radius);
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mano-log-info {
+    background-color: #e8f4fd;
+    border-left: 3px solid var(--mano-primary);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.mano-log-info::before {
+    content: "ℹ️";
+}
+
+.mano-log-success {
+    background-color: #e8f8e8;
+    border-left: 3px solid var(--mano-success);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.mano-log-success::before {
+    content: "✅";
+}
+
+.mano-log-error {
+    background-color: #fde8e8;
+    border-left: 3px solid var(--mano-error);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.mano-log-error::before {
+    content: "❌";
+}
+
+.mano-action-button {
+    background-color: var(--mano-accent);
+    color: var(--mano-dark);
+    border: none;
+    border-radius: var(--mano-border-radius);
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--mano-transition);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mano-action-button:hover {
+    background-color: var(--mano-warning);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#mano-actions-container {
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Visualizador do Sisreg */
+.mano-sisreg-viewer {
+    position: fixed;
+    bottom: 20px;
+    right: 370px;
+    width: 400px;
+    height: 300px;
+    background-color: white;
+    border-radius: var(--mano-border-radius);
+    box-shadow: var(--mano-box-shadow);
+    overflow: hidden;
+    z-index: 9998;
+    display: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mano-sisreg-viewer.visible {
+    display: block;
+}
+
+.mano-sisreg-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--mano-primary);
+    color: white;
+}
+
+.mano-sisreg-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.mano-sisreg-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.mano-sisreg-content {
+    height: calc(100% - 40px);
+    overflow: auto;
+}
+
+.mano-sisreg-content img {
+    width: 100%;
+    height: auto;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #mano-sidebar {
+        width: 100%;
+    }
+    
+    .mano-sisreg-viewer {
+        width: 90%;
+        right: 5%;
+        bottom: 70px;
+    }
+}
